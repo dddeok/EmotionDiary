@@ -20,10 +20,9 @@ public class Write extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
             savedInstanceState) {
-        View view = inflater.inflate(R.layout.write, container, false);
+        view = inflater.inflate(R.layout.write, container, false);
 
         button = (Button)view.findViewById(R.id.addTextBtn);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -25,7 +25,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 fragment = new Write();
                 break;
-
             case 2:
                 fragment = new Calendar();
                 break;

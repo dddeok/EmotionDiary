@@ -28,7 +28,8 @@ public class Calendar extends Fragment {
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
                 savedInstanceState) {
             View view = inflater.inflate(R.layout.calendar, container, false);
-            binding = DataBindingUtil.setContentView(getActivity(), R.layout.calendar);
+
+            binding = DataBindingUtil.bind(view);
             model = ViewModelProviders.of(this).get(CalendarListViewModel.class);
             binding.setModel(model);
             binding.setLifecycleOwner(this);
