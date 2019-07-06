@@ -17,6 +17,7 @@
         android:layout_marginTop="13dp"
         android:textColor="#707070"
         android:layout_marginRight="29dp"
+        android:id="@+id/current"
         />
         <View
             android:layout_width="150dp"
