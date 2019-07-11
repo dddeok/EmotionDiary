@@ -37,15 +37,24 @@
         android:layout_marginLeft="22dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="29.5dp"
-        android:layout_weight="8">
+        android:layout_weight="8"
+        android:orientation="vertical">
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:hint="내용을 입력하세요"
             android:gravity="top"
             android:textSize="15dp"
             android:background="@android:color/transparent"
+            android:id="@+id/edit_text"
             />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/text_img"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

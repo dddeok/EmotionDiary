@@ -43,10 +43,12 @@ public class ListViewAdapter extends BaseAdapter {
         ImageView contentImg = view.findViewById(R.id.contentImg);
         TextView contentText = view.findViewById(R.id.contentText);
         TextView contentDate = view.findViewById(R.id.contentDate);
+        TextView contentEmotion = view.findViewById(R.id.contentEmotion);
 
-        contentText.setText(data.getContentText());
-        contentImg.setImageResource(data.getContentImg());
+        contentText.setText(data.getContents());
+        contentImg.setImageBitmap(data.getContentImg());
         contentDate.setText(data.getContentDate());
+        contentEmotion.setText(data.getContentsEmotion());
         return view;
     }
 

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class Write extends Fragment {
     View view;
     TextView currentDate;
     ImageView addpic_view;
-
+    Bitmap bitmap;
     APIKey apiKey = new APIKey();
 
     private final int PICK_IMAGE = 1;
@@ -85,7 +86,16 @@ public class Write extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 Intent intent = new Intent(getActivity(),TextWrite.class);
+                intent.putExtra("date",getTime);
+                intent.putExtra("emotion",Emotion);
+                BitmapDrawable d = (BitmapDrawable)((ImageView) view.findViewById(R.id.addPicview)).getDrawable();
+                Bitmap b = d.getBitmap();
+                Bitmap resized = Bitmap.createScaledBitmap(b, 320, 320,  false);
+                resized.compress(Bitmap.CompressFormat.PNG,100,stream);
+                intent.putExtra("img",stream.toByteArray());
+                System.out.println(getTime);
                 startActivity(intent);
             }
         });
@@ -99,7 +109,7 @@ public class Write extends Fragment {
                 data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                bitmap = MediaStore.Images.Media.getBitmap(
                         getContext().getContentResolver(), uri);
                 ImageView imageView = view.findViewById(R.id.addPicview);
                 imageView.setImageBitmap(bitmap);

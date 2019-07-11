@@ -4,9 +4,8 @@ public class APIKey {
     private final String apiEndpoint;
     private final String subscriptionKey;
     public APIKey() {
-        apiEndpoint= "apiEndpoint";
+        apiEndpoint=  "apiEndpoint";
         subscriptionKey = "subscriptionKey";
-
     }
 
     public String getApiEndpoint(){
