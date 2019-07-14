@@ -79,12 +79,7 @@ public class TextWrite extends Activity {
                         });
                 dialog.create();
                 dialog.show();
-/*
-                String contents = editText.getText().toString();
-                dbHelper.insert(data,  bytes, contents, emotion);
-                Log.d("Test", "Success");
-                mOnClick(v);
-                */
+
             }
         });
 
