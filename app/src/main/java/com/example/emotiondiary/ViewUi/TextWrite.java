@@ -1,6 +1,8 @@
 package com.example.emotiondiary.ViewUi;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.emotiondiary.DBHelper;
 import com.example.emotiondiary.R;
@@ -52,10 +55,31 @@ public class TextWrite extends Activity {
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String contents = editText.getText().toString();
-                dbHelper.insert(data,  bytes, contents, emotion);
-                Log.d("Test", "Success");
-                mOnClick(v);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(TextWrite.this);
+                dialog .setTitle("Emotion Diary")
+                        .setMessage("저장하시겠습니까?")
+                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String contents = editText.getText().toString();
+                                dbHelper.insert(data,  bytes, contents, emotion);
+                                Log.d("Test", "Success");
+                                mOnClick(v);
+                                Toast.makeText(TextWrite.this, "저장을 완료했습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(TextWrite.this, "취소 버튼을 눌렀습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                dialog.create();
+                dialog.show();
+
             }
         });
 
