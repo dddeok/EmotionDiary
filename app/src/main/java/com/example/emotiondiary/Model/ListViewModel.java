@@ -1,33 +1,33 @@
 package com.example.emotiondiary.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 public class ListViewModel {
-    int contentImg;
-    String contentText;
+    byte[] contentImg;
     String contentDate;
+    String contents;
+    String contentsEmotion;
 
-    public ListViewModel(int contentImg, String text, String date, String contentText, String contentDate) {
+    public ListViewModel(byte[] contentImg, String contentDate, String contents, String emotion) {
         this.contentImg = contentImg;
-        this.contentText = contentText;
         this.contentDate = contentDate;
+        this.contents = contents;
+        this.contentsEmotion = emotion;
     }
 
-    public int getContentImg() {
-        return contentImg;
-    }
-
-    public void setContentImg(int contentImg) {
-        this.contentImg = contentImg;
-    }
-
-    public String getContentText() {
-        return contentText;
-    }
-
-    public void setContentText(String contentText) {
-        this.contentText = contentText;
+    public Bitmap getContentImg() {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(contentImg,0,contentImg.length);
+        return bitmap;
     }
 
     public String getContentDate() { return contentDate; }
 
-    public void setContentDate() { this.contentDate = contentDate;}
+    public String getContents(){
+        return contents;
+    }
+
+    public String getContentsEmotion(){
+        return contentsEmotion;
+    }
 }

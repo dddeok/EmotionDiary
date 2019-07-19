@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -13,7 +14,7 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -24,16 +25,28 @@
             android:hint="일기 들어갈 곳"
             android:id="@+id/contentText"
             />
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="날짜들어갈 곳"
-            android:layout_gravity="bottom"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="10dp"
-            android:textSize="10dp"
-            android:id="@+id/contentDate"
-            />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="날짜들어갈 곳"
+                android:textSize="10dp"
+                android:id="@+id/contentDate"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:hint="감정 들어가는 곳"
+                android:textSize="10dp"
+                android:id="@+id/contentEmotion"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 

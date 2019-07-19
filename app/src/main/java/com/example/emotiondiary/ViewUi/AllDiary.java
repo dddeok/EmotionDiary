@@ -1,15 +1,19 @@
 package com.example.emotiondiary.ViewUi;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.emotiondiary.Adapter.ListViewAdapter;
+import com.example.emotiondiary.DBHelper;
 import com.example.emotiondiary.Model.ListViewModel;
 import com.example.emotiondiary.R;
 
@@ -25,16 +29,27 @@ public class AllDiary extends Fragment  {
         View view = inflater.inflate(R.layout.all_diary, container, false);
         listView = view.findViewById(R.id.listView);
 
-        for(int i=0;i<3;i++) //여기를 적은 사이즈만큼만 받아오도록 설정하고싶은데 일단 임의의 숫자로 해놨소
-        {
-            list.add(addBoard(R.drawable.picpic,"insta1", "190513"));
-            }
-        ListViewAdapter adapter = new ListViewAdapter(list);
-        listView.setAdapter(adapter);
+        DBHelper dbHelper = new DBHelper(getContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from diary_table", null);
+
+        while(cursor.moveToNext()) {
+            String date = cursor.getString(0);
+            byte[] img = cursor.getBlob(1);
+            String contents = cursor.getString(2);
+            String emotion = cursor.getString(3);
+            System.out.println("Check The date" + date);
+            Log.d("test",img.toString());
+            list.add(addBoard(img,  date, contents, emotion));
+
+            ListViewAdapter adapter = new ListViewAdapter(list);
+            listView.setAdapter(adapter);
+        }
         return view;
     }
-    ListViewModel addBoard(int contentImg, String contentText, String contentDate){
-        return new ListViewModel(contentImg, contentText, contentDate,"게시글이 너무 좋네요","190513");
+
+    ListViewModel addBoard(byte[] contentImg, String contentDate, String contents, String emotion){
+        return new ListViewModel(contentImg, contentDate, contents, emotion);
     }
 
 }
